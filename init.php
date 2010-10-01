@@ -1,7 +1,7 @@
 <?php
 
 // If we're on the CLI then PHPUnit will already be loaded
-if (class_exists('PHPUnit_Util_Filter', FALSE))
+if (class_exists('PHP_CodeCoverage_Filter', FALSE))
 {
 	Kohana_Tests::configure_environment();
 

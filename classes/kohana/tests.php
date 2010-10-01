@@ -38,10 +38,10 @@ class Kohana_Tests
 	 */
 	static public function configure_environment($do_whitelist = TRUE, $do_blacklist = TRUE)
 	{
-		if ( ! class_exists('PHPUnit_Util_Filter', FALSE))
+		if ( ! class_exists('PHP_CodeCoverage_Filter', FALSE))
 		{
 			// Make sure the PHPUnit classes are available
-			require_once 'PHPUnit/Framework.php';
+			require_once 'PHPUnit/Autoload.php';
 		}
 
 		if (Kohana::$is_cli)
@@ -67,11 +67,11 @@ class Kohana_Tests
 			{
 				if (is_dir($item))
 				{
-					PHPUnit_Util_Filter::addDirectoryToFilter($item);
+					PHP_CodeCoverage_Filter::getInstance()->addDirectoryToFilter($item);
 				}
 				else
 				{
-					PHPUnit_Util_Filter::addFileToFilter($item);
+					PHP_CodeCoverage_Filter::getInstance()->addFileToFilter($item);
 				}
 			}
 		}
@@ -146,7 +146,7 @@ class Kohana_Tests
 						require_once($file);
 					}
 
-					PHPUnit_Util_Filter::addFileToFilter($file);
+					PHP_CodeCoverage_Filter::getInstance()->addFileToBlacklist($file);
 				}
 			}
 		}
@@ -254,7 +254,7 @@ class Kohana_Tests
 
 				if (Kohana_Tests::$cache[$file])
 				{
-					PHPUnit_Util_Filter::addFileToWhitelist($file);
+					PHP_CodeCoverage_Filter::getInstance()->addFileToWhitelist($file);
 				}
 			}
 		}
